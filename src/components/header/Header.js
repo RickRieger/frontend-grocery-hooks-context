@@ -12,6 +12,8 @@ function Header() {
     handleMakeItemPriority,
     setSelected,
     buttonDisabled,
+    sortByDate,
+    sortByPurchased,
   } = useContext(HeaderContext);
   function setGroceryInputFunction(e) {
     setGroceryInput(e.target.value);
@@ -56,33 +58,45 @@ function Header() {
             Prioritize{' '}
           </button>
         </div>
-        <div>
-          <button
-            disabled={buttonDisabled}
-            style={{ backgroundColor: buttonDisabled ? 'grey' : '' }}
-          >
-            Sort by oldest
-          </button>
-          <button
-            disabled={buttonDisabled}
-            style={{ backgroundColor: buttonDisabled ? 'grey' : '' }}
-          >
-            Sort by newest
-          </button>
-          <button
-            disabled={buttonDisabled}
-            style={{ backgroundColor: buttonDisabled ? 'grey' : '' }}
-          >
-            Sort by completed
-          </button>
-          <button
-            disabled={buttonDisabled}
-            style={{ backgroundColor: buttonDisabled ? 'grey' : '' }}
-          >
-            Sort by not completed
-          </button>
-        </div>
       </form>
+      <div>
+        <button
+          disabled={buttonDisabled}
+          style={{ backgroundColor: buttonDisabled ? 'grey' : '' }}
+          onClick={() => {
+            sortByDate('asc');
+          }}
+        >
+          Sort by oldest
+        </button>
+        <button
+          disabled={buttonDisabled}
+          style={{ backgroundColor: buttonDisabled ? 'grey' : '' }}
+          onClick={() => {
+            sortByDate('desc');
+          }}
+        >
+          Sort by newest
+        </button>
+        <button
+          disabled={buttonDisabled}
+          style={{ backgroundColor: buttonDisabled ? 'grey' : '' }}
+          onClick={() => {
+            sortByPurchased(true);
+          }}
+        >
+          Sort by completed
+        </button>
+        <button
+          disabled={buttonDisabled}
+          style={{ backgroundColor: buttonDisabled ? 'grey' : '' }}
+          onClick={() => {
+            sortByPurchased(false);
+          }}
+        >
+          Sort by not completed
+        </button>
+      </div>
     </div>
   );
 }

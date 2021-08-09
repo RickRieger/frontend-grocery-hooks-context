@@ -245,6 +245,28 @@ function App() {
     }
   }
 
+  async function sortByDate(sortOrder) {
+    try {
+      let sortedGroceryItems = await axios.get(
+        `${URL}/api/grocery/get-grocery-by-sort?sort=${sortOrder}`
+      );
+      console.log(sortedGroceryItems.data.payload);
+      setGroceryList(sortedGroceryItems.data.payload);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  async function sortByPurchased(isPurchased) {
+    try {
+      let isPurchasedGroceryArray = await axios.get(
+        `${URL}/api/grocery/get-grocery-by-purchased?isPurchased=${isPurchased}`
+      );
+      setGroceryList(isPurchasedGroceryArray.data.payload);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   const itemsToGroceryList = {
     groceryList,
     selected,
@@ -262,6 +284,8 @@ function App() {
     handleMakeItemPriority,
     setSelected,
     buttonDisabled,
+    sortByDate,
+    sortByPurchased,
   };
 
   return (
