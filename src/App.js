@@ -134,7 +134,7 @@ function App() {
 
   async function handleUpdateItem(e) {
     e.preventDefault();
-
+   
     if (selected === '') {
       toast.warn('Please select an item!', {
         position: 'top-center',
@@ -267,12 +267,19 @@ function App() {
     }
   }
 
+  function setSelectedElement(e, index) {
+    e.stopPropagation();
+
+    setSelected(index);
+  }
+
   const itemsToGroceryList = {
     groceryList,
     selected,
     setSelected,
     handleMarkCompleted,
     notDisabled,
+    setSelectedElement,
   };
 
   const itemsToHeader = {
@@ -283,6 +290,7 @@ function App() {
     handleUpdateItem,
     handleMakeItemPriority,
     setSelected,
+    selected,
     buttonDisabled,
     sortByDate,
     sortByPurchased,

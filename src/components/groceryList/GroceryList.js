@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { GroceryListContext } from '../../context/context';
 import './GroceryList.css';
 
@@ -9,14 +9,18 @@ function GroceryList() {
     setSelected,
     handleMarkCompleted,
     notDisabled,
+    setSelectedElement,
   } = useContext(GroceryListContext);
-  console.log(notDisabled);
-  console.log(selected);
+
+  function onBackgroundClick(e) {
+    //awesome!
+    e.stopPropagation();
+    setSelected('');
+  }
 
   return (
-    <div id='grocery-container'>
+    <div id='grocery-container' onClick={(e) => onBackgroundClick(e)}>
       <div id='grocery-list'>
-        <h4>(click once to select, double click to mark complete)</h4>
         <ul className='unordered-list'>
           {groceryList.map((item, index) => {
             return (
@@ -29,7 +33,11 @@ function GroceryList() {
                 }}
               >
                 <span
-                  onClick={notDisabled ? () => setSelected(index) : undefined}
+                  onClick={
+                    notDisabled
+                      ? (e) => setSelectedElement(e, index)
+                      : undefined
+                  }
                   onDoubleClick={handleMarkCompleted}
                 >
                   <span className='priority'>

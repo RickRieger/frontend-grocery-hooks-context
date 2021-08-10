@@ -89,13 +89,17 @@ function Header() {
         </button>
         <button
           disabled={buttonDisabled}
-          style={{ backgroundColor: buttonDisabled ? 'grey' : '' }}
+          style={{
+            backgroundColor: buttonDisabled ? 'grey' : '',
+            pointerEvents: buttonDisabled ? 'none' : '',
+          }}
           onClick={() => {
             sortByPurchased(false);
           }}
         >
           Sort by not completed
         </button>
+        <h4>(click once to select, double click to mark complete)</h4>
       </div>
     </div>
   );

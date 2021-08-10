@@ -9,6 +9,7 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: scroll;
 }
 #grocery-list {
   width: 500px;
